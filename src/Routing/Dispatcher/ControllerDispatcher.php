@@ -40,7 +40,9 @@ class ControllerDispatcher implements ControllerDispatcherInterface
         
         $context = clone $request; // Actually we should pass a context object. Let's create an InvocationContext.
         $invocationContext = new \Palet\Framework\Support\Invocation\InvocationContext(array_merge($parameters, [
-            RequestInterface::class => $request
+            RequestInterface::class => $request,
+            get_class($request) => $request,
+            'request' => $request
         ]));
         
         $result = $this->methodInvoker->invoke($callableAction, $invocationContext);

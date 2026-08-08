@@ -33,6 +33,10 @@ class ParameterResolver implements ParameterResolverInterface
         if ($type instanceof ReflectionNamedType && !$type->isBuiltin()) {
             $className = $type->getName();
             
+            if ($context->hasParameter($className)) {
+                return $context->getParameter($className);
+            }
+            
             if ($this->dependencyResolver->has($className)) {
                 return $this->dependencyResolver->resolve($className);
             }
