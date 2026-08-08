@@ -15,7 +15,13 @@ class ActionResultNormalizer
             return $result;
         }
 
-        if (is_array($result) || is_object($result)) {
+        if ($result instanceof \Palet\Framework\Contracts\View\ViewInterface) {
+            $result = $result->render();
+        } elseif ($result instanceof \Stringable) {
+            $result = (string) $result;
+        }
+
+        if (is_array($result) || (is_object($result) && !($result instanceof \Palet\Framework\Contracts\View\ViewInterface) && !($result instanceof \Stringable))) {
             // @todo Use a real JsonResponse class in the future
             return new Response(
                 200, 
