@@ -18,6 +18,11 @@ class SessionGuard implements StatefulGuardInterface
         $this->provider = $provider;
     }
 
+    public function getProvider(): UserProviderInterface
+    {
+        return $this->provider;
+    }
+
     public function attempt(array $credentials = [], bool $remember = false): bool
     {
         $user = $this->provider->retrieveByCredentials($credentials);
