@@ -28,7 +28,32 @@ class PhpEngine implements EngineInterface
             $this->handleViewException($e, $obLevel);
         }
 
-        return ltrim(ob_get_clean());
+        $output = ltrim(ob_get_clean());
+        
+        // Auto-inject CSRF token into forms with method POST, PUT, DELETE, PATCH
+        if (str_contains(strtoupper($output), '<FORM') && class_exists('\\Palet\\Framework\\Foundation\\Application')) {
+            $app = \Palet\Framework\Foundation\Application::getInstance();
+            if ($app !== null && $app->has(\Palet\Framework\Contracts\Session\SessionInterface::class)) {
+                $session = $app->make(\Palet\Framework\Contracts\Session\SessionInterface::class);
+                $token = method_exists($session, 'token') ? $session->token() : $session->get('_token');
+                
+                if ($token) {
+                    $csrfField = '<input type="hidden" name="_token" value="' . htmlspecialchars((string) $token) . '">';
+                    // Regex to find form tags that DO NOT have method="GET" (case-insensitive)
+                    // It will match any <form ...>
+                    $output = preg_replace_callback('/<form\s+[^>]*>/i', function($matches) use ($csrfField) {
+                        $formTag = $matches[0];
+                        // If it's a GET form, we don't need CSRF token
+                        if (preg_match('/method\s*=\s*[\'"]?GET[\'"]?/i', $formTag)) {
+                            return $formTag;
+                        }
+                        return $formTag . "\n    " . $csrfField;
+                    }, $output);
+                }
+            }
+        }
+
+        return $output;
     }
 
     protected function handleViewException(Throwable $e, int $obLevel): void
