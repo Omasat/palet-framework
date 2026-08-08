@@ -20,7 +20,7 @@ abstract class AbstractMakeCommand extends Command
 
     protected function execute(): int
     {
-        $name = $this->argument('0') ?? $this->argument('name');
+        $name = $this->argument('1') ?? $this->argument('name');
         
         if (!$name) {
             $this->error('Name is required.');
