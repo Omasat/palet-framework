@@ -12,7 +12,6 @@ class SessionGuard implements StatefulGuardInterface
 {
     protected UserProviderInterface $provider;
     protected ?AuthenticatableInterface $user = null;
-    protected array $session = []; // Mock session
 
     public function __construct(UserProviderInterface $provider)
     {
@@ -34,14 +33,14 @@ class SessionGuard implements StatefulGuardInterface
     public function login(AuthenticatableInterface $user, bool $remember = false): void
     {
         $this->user = $user;
-        $this->session['user_id'] = $user->getAuthIdentifier();
+        $_SESSION['user_id'] = $user->getAuthIdentifier();
         // Remember me logic will be added here
     }
 
     public function logout(): void
     {
         $this->user = null;
-        unset($this->session['user_id']);
+        unset($_SESSION['user_id']);
     }
 
     public function user(): ?AuthenticatableInterface
@@ -50,7 +49,7 @@ class SessionGuard implements StatefulGuardInterface
             return $this->user;
         }
 
-        $id = $this->session['user_id'] ?? null;
+        $id = $_SESSION['user_id'] ?? null;
         if ($id !== null) {
             $this->user = $this->provider->retrieveById($id);
         }

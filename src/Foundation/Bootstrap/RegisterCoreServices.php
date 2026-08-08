@@ -12,6 +12,7 @@ class RegisterCoreServices implements BootstrapperInterface
     {
         $app->register(\Palet\Framework\Database\DatabaseServiceProvider::class);
         $app->register(\Palet\Framework\View\ViewServiceProvider::class);
+        $app->register(\Palet\Framework\Auth\AuthServiceProvider::class);
 
         $app->singleton(
             \Palet\Framework\Contracts\Routing\RouterInterface::class,
