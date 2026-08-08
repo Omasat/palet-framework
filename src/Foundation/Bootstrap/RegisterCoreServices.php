@@ -11,6 +11,7 @@ class RegisterCoreServices implements BootstrapperInterface
     public function bootstrap(ApplicationInterface $app): void
     {
         $app->register(\Palet\Framework\Database\DatabaseServiceProvider::class);
+        $app->register(\Palet\Framework\View\ViewServiceProvider::class);
 
         $app->singleton(
             \Palet\Framework\Contracts\Routing\RouterInterface::class,
