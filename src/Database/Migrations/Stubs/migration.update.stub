@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+use Palet\Framework\Database\Migrations\Migration;
+use Palet\Framework\Database\Schema\Blueprint;
+use Palet\Framework\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('{{ TableName }}', function (Blueprint $table) {
+            //
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('{{ TableName }}', function (Blueprint $table) {
+            //
+        });
+    }
+};

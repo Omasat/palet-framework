@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ Namespace }};
+
+use Closure;
+use Palet\Framework\Http\Request;
+use Palet\Framework\Http\Response;
+
+class {{ ClassName }}
+{
+    /**
+     * Handle an incoming request.
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        return $next($request);
+    }
+}

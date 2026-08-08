@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ Namespace }};
+
+use Palet\Framework\Contracts\Queue\JobInterface;
+use Palet\Framework\Queue\Jobs\JobTrait;
+
+class {{ ClassName }} implements JobInterface
+{
+    use JobTrait;
+
+    public function __construct()
+    {
+        //
+    }
+
+    public function fire(): void
+    {
+        // Process the job...
+    }
+}

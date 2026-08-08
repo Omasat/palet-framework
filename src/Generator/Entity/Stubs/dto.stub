@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ Namespace }};
+
+readonly class {{ ClassName }}
+{
+    public function __construct(
+        //
+    ) {}
+}

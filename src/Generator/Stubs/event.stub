@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ Namespace }};
+
+use Palet\Framework\Contracts\Events\EventInterface;
+
+readonly class {{ ClassName }} implements EventInterface
+{
+    public function __construct()
+    {
+        //
+    }
+}

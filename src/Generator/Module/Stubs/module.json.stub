@@ -1,0 +1,9 @@
+{
+    "name": "{{ ModuleName }}",
+    "version": "{{ ModuleVersion }}",
+    "description": "A new module for Palet Framework.",
+    "providers": [
+        "{{ Namespace }}\\{{ ClassName }}"
+    ],
+    "active": true
+}

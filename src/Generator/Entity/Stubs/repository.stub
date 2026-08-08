@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ Namespace }};
+
+use {{ InterfaceNamespace }}\{{ InterfaceName }};
+
+class {{ ClassName }} implements {{ InterfaceName }}
+{
+    //
+}

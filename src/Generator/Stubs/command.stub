@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ Namespace }};
+
+use Palet\Framework\Console\Command;
+
+class {{ ClassName }} extends Command
+{
+    protected string $signature = 'command:name';
+    protected string $description = 'Command description';
+
+    public function handle(): int
+    {
+        $this->info('Command executed successfully.');
+        return 0;
+    }
+}

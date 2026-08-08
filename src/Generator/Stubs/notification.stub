@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ Namespace }};
+
+use Palet\Framework\Contracts\Notifications\NotificationInterface;
+
+class {{ ClassName }} implements NotificationInterface
+{
+    public function __construct()
+    {
+        //
+    }
+
+    public function via(mixed $notifiable): array
+    {
+        return ['mail'];
+    }
+
+    public function toMail(mixed $notifiable): array
+    {
+        return [
+            'subject' => 'Notification Subject',
+            'body' => 'Notification body.'
+        ];
+    }
+}
