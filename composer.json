@@ -1,7 +1,6 @@
 {
     "name": "omasat/palet-framework",
     "description": "Palet Framework Core - Enterprise PHP Framework",
-    "version": "1.0.0-RC1",
     "type": "library",
     "license": "MIT",
     "require": {
